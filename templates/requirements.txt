@@ -1,0 +1,3 @@
+{% for req in package.all_requires %}
+    {{ req.name }}{{ req.constraint }}
+{% endfor %}
