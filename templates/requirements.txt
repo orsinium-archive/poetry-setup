@@ -1,3 +1,3 @@
 {% for req in package.all_requires %}
-    {{ req.name }}{{ req.constraint }}
+    {{ req.name }}{% if not req.constraint.is_any() %}{{ req.constraint }}{% endif %}
 {% endfor %}

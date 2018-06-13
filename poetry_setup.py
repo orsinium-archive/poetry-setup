@@ -8,7 +8,11 @@ TEMPLATES_PATH = Path('templates')
 
 
 class PoetrySetup:
+    # templates
     requirements_path = TEMPLATES_PATH / 'requirements.txt'
+
+    # outputs
+    requirements_name = 'requirements.txt'
 
     def __init__(self, path):
         if not isinstance(path, Path):
@@ -22,7 +26,20 @@ class PoetrySetup:
         return poetry._package
 
     def get_requirements(self):
-        with self.requirements_path.open() as f:
+        with self.requirements_path.open(encoding='utf-8') as f:
             document = f.read()
         template = Environment().from_string(document)
-        return template.render(package=self.package)
+        document = template.render(package=self.package)
+
+        # rm junk
+        document = document.replace('    ', '')
+        # sort lines
+        lines = sorted(line for line in document.split('\n') if line)
+        document = '\n'.join(lines) + '\n'
+        return document
+
+    def sync(self):
+        document = self.get_requirements()
+        path = self.path / self.requirements_name
+        with path.open('w', encoding='utf-8') as f:
+            f.write(document)
