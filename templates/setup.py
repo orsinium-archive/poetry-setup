@@ -20,6 +20,18 @@ here = path.abspath(path.dirname(__file__))
 with open(path.join(here, '{{ package.readme.name }}'), encoding='utf-8') as f:
     long_description = f.read()
 
+
+# https://stackoverflow.com/a/16624700
+requirements_path = path.join(here, 'requirements.txt')
+try:
+    from pip.req import parse_requirements
+except ImportError:
+    requirements = list(open(requirements_path))
+else:
+    requirements = parse_requirements(requirements_path)
+    requirements = [str(r.req) for r in requirements]
+
+
 # Arguments marked as "Required" below must be included for upload to PyPI.
 # Fields marked as "Optional" may be commented out.
 
@@ -70,7 +82,7 @@ setup(
     ),  # Required
 
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=['peppercorn'],  # Optional
+    install_requires=requirements,  # Optional
 
     {% if package.extras %}
         extras_require={{ package.extras|pprint }},
