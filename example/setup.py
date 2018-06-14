@@ -24,7 +24,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 # Fields marked as "Optional" may be commented out.
 setup(
     # https://packaging.python.org/specifications/core-metadata/#name
-    name='my-package',  # Required
+    name='example',  # Required
     # https://www.python.org/dev/peps/pep-0440/
     # https://packaging.python.org/en/latest/single_source_version.html
     version='0.1.0',  # Required
@@ -49,7 +49,7 @@ setup(
     data_files=[],  # Optional
     entry_points={  # Optional
         'console_scripts': [
-            'my-script=my_package:main',
+            'my-script=example.core:main',
         ],
     },
     # https://packaging.python.org/specifications/core-metadata/#project-url-multiple-use

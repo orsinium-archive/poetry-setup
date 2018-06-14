@@ -2,7 +2,9 @@
 name = "poetry-setup"
 version = "0.1.0"
 description = "make setup.py (setutools) from pyproject.toml (poetry)"
-authors = ["@orsinium <master_fess@mail.ru>"]
+authors = [
+    "Gram Orsinium <master_fess@mail.ru>"
+]
 license = "Apache-2.0"
 readme = "README.md"
 homepage = "https://github.com/orsinium/poetry-setup"

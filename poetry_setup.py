@@ -3,11 +3,13 @@ from os import path
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 
-from jinja2 import Environment
-from poetry.poetry import Poetry
-from yapf.yapflib.yapf_api import FormatCode
-from yapf.yapflib.style import CreateGoogleStyle
 from autopep8 import fix_code
+from jinja2 import Environment
+from poetry.io import NullIO
+from poetry.masonry.builders.builder import Builder
+from poetry.poetry import Poetry
+from yapf.yapflib.style import CreateGoogleStyle
+from yapf.yapflib.yapf_api import FormatCode
 
 try:
     # pip>=10
@@ -42,6 +44,9 @@ class PoetrySetup:
         poetry = Poetry.create(path)
         package = poetry._package
         package.scripts = poetry._local_config.get('scripts')
+        builder = Builder(poetry, venv=None, io=NullIO)
+        # builder.find_files_to_add()
+        package.entrypoints = builder.convert_entry_points()
         return package
 
     def get_requirements(self, optional=False):

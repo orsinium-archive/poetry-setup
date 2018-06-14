@@ -36,8 +36,12 @@ setup(
     # https://packaging.python.org/specifications/core-metadata/#description-content-type-optional
     long_description_content_type='text/markdown',  # Optional (see note above)
     url="https://github.com/orsinium/poetry-setup",  # Optional
+    author="Gram Orsinium",  # Optional
+    author_email="master_fess@mail.ru",  # Optional
     # For a list of valid classifiers, see https://pypi.org/classifiers/
     classifiers=[  # Optional
+        'Development Status :: 4 - Beta',
+        'Environment :: Console',
         'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',

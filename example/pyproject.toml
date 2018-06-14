@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "my-package"
+name = "example"
 version = "0.1.0"
 description = "The description of the package"
 
@@ -34,4 +34,4 @@ pytest = "^3.0"
 pytest-cov = "^2.4"
 
 [tool.poetry.scripts]
-my-script = 'my_package:main'
+my-script = 'example.core:main'
