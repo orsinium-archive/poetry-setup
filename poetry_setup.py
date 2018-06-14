@@ -1,4 +1,5 @@
 import sys
+from os import path
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 
@@ -17,7 +18,7 @@ except ImportError:
     from pip.req import parse_requirements
 
 
-TEMPLATES_PATH = Path('templates')
+TEMPLATES_PATH = Path(path.abspath(path.dirname(__file__))) / 'templates'
 
 
 class PoetrySetup:
@@ -30,7 +31,7 @@ class PoetrySetup:
     constraints_name = 'constraints.txt'
     setup_name = 'setup.py'
 
-    def __init__(self, path):
+    def __init__(self, path='.'):
         if not isinstance(path, Path):
             path = Path(path)
         self.path = path

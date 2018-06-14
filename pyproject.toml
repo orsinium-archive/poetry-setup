@@ -9,6 +9,8 @@ homepage = "https://github.com/orsinium/poetry-setup"
 repository = "https://github.com/orsinium/poetry-setup"
 keywords = ["packaging", "dependency", "poetry", "setuptools", "pip"]
 classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
     "Topic :: Software Development :: Build Tools",
     "Topic :: Software Development :: Libraries :: Python Modules"
 ]
