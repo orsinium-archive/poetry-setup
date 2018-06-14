@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "poetry-setup"
+version = "0.1.0"
+description = "make setup.py (setutools) from pyproject.toml (poetry)"
+authors = ["@orsinium <master_fess@mail.ru>"]
+license = "Apache-2.0"
+readme = "README.md"
+homepage = "https://github.com/orsinium/poetry-setup"
+repository = "https://github.com/orsinium/poetry-setup"
+keywords = ["packaging", "dependency", "poetry", "setuptools", "pip"]
+classifiers = [
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+[tool.poetry.dependencies]
+python = "^3.4"
+autopep8 = "*"
+jinja2 = "*"
+pip = "*"
+poetry = "*"
+yapf = "*"
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+
+[tool.poetry.scripts]
+poetry-setup = "poetry_setup:main"
