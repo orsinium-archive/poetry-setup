@@ -1,10 +1,20 @@
+import os
 from pathlib import Path
+from tempfile import NamedTemporaryFile
 
 from jinja2 import Environment
 from poetry.poetry import Poetry
 from yapf.yapflib.yapf_api import FormatCode
 from yapf.yapflib.style import CreateGoogleStyle
 from autopep8 import fix_code
+
+try:
+    # pip>=10
+    from pip._internal.download import PipSession
+    from pip._internal.req import parse_requirements
+except ImportError:
+    from pip.download import PipSession
+    from pip.req import parse_requirements
 
 
 TEMPLATES_PATH = Path('templates')
@@ -46,16 +56,28 @@ class PoetrySetup:
         return document
 
     def get_setup(self):
+        # get requirements
+        # https://stackoverflow.com/a/16624700
+        with NamedTemporaryFile('w', delete=False) as f:
+            requirements = self.get_requirements()
+            f.write(requirements)
+            f.flush()
+            requirements = parse_requirements(f.name, session=PipSession())
+            requirements = [str(r.req) for r in requirements]
+
+        # render template
         with self.setup_path.open(encoding='utf-8') as f:
             document = f.read()
         template = Environment().from_string(document)
-        document = template.render(package=self.package)
-        # format
+        document = template.render(package=self.package, requirements=requirements)
+
+        # format by yapf
         style = CreateGoogleStyle()
         document, _changed = FormatCode(document, style_config=style)
         # remove empty strings
         while '\n\n' in document:
             document = document.replace('\n\n', '\n')
+        # format by autopep8
         document = fix_code(document)
         return document
 
