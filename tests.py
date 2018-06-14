@@ -14,4 +14,7 @@ def test_requirements():
 def test_setup():
     ps = PoetrySetup('example')
     setup = ps.get_setup()
-    assert "name='my-package'," in setup
+    assert "name='example'," in setup       # name
+    assert "version='0.1.0'," in setup      # version
+    assert "pathlib2<3.0,>=2.2" in setup    # requirements
+    assert "my-script=example.core:main" in setup   # entrypoints

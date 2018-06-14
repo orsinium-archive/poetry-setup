@@ -47,3 +47,11 @@ Generate for project in `example` dir:
 ```bash
 poetry-setup example
 ```
+
+## Run test
+
+```bash
+pipenv install
+pipenv shell
+python -m pytest tests.py
+```
