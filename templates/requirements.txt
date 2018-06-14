@@ -1,3 +1,7 @@
 {% for req in package.all_requires %}
-    {{ req.name }}{% if not req.constraint.is_any() %}{{ req.constraint }}{% endif %}
+    {% if req.is_vcs() %}
+        -e {{ req.vcs }}+{{ req.source }}@{{ req.reference }}#egg={{ req.name }}
+    {% else %}
+        {{ req.name }}{% if not req.constraint.is_any() %}{{ req.constraint }}{% endif %}
+    {% endif %}
 {% endfor %}

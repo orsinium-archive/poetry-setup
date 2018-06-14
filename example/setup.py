@@ -36,11 +36,9 @@ setup(
     packages=find_packages(),  # Required
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=['peppercorn'],  # Optional
-    package_data={  # Optional
-        'sample': ['package_data.dat'],
-    },
+    # NOT SUPPORTED YET
     # http://docs.python.org/3.4/distutils/setupscript.html#installing-additional-files
-    data_files=[('my_data', ['data/data_file'])],  # Optional
+    data_files=[],  # Optional
     entry_points={  # Optional
         'console_scripts': [
             'my-script=my_package:main',

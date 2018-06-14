@@ -1,4 +1,4 @@
-cleo
+-e git+https://github.com/sdispater/cleo.git@master#egg=cleo
 pathlib2>=2.2,<3.0
 pendulum>=1.4,<2.0
 pytest-cov>=2.4,<3.0

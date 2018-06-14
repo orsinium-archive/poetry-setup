@@ -76,12 +76,9 @@ setup(
         extras_require={{ package.extras|pprint }},
     {% endif %}
 
-    package_data={  # Optional
-        'sample': ['package_data.dat'],
-    },
-
+    # NOT SUPPORTED YET
     # http://docs.python.org/3.4/distutils/setupscript.html#installing-additional-files
-    data_files=[('my_data', ['data/data_file'])],  # Optional
+    data_files=[],  # Optional
 
     {% if package.scripts %}
         entry_points={  # Optional
