@@ -48,6 +48,10 @@ Generate for project in `example` dir:
 poetry-setup example
 ```
 
+## What about pipenv?
+
+Pipenv can generate `Pipfile` from `requirements.txt`.
+
 ## Run test
 
 ```bash
