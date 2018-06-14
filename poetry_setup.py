@@ -17,6 +17,7 @@ class PoetrySetup:
 
     # outputs
     requirements_name = 'requirements.txt'
+    constraints_name = 'constraints.txt'
     setup_name = 'setup.py'
 
     def __init__(self, path):
@@ -32,11 +33,11 @@ class PoetrySetup:
         package.scripts = poetry._local_config.get('scripts')
         return package
 
-    def get_requirements(self):
+    def get_requirements(self, optional=False):
         with self.requirements_path.open(encoding='utf-8') as f:
             document = f.read()
         template = Environment().from_string(document)
-        document = template.render(package=self.package)
+        document = template.render(package=self.package, optional=optional)
         # rm junk
         document = document.replace('    ', '')
         # sort lines
@@ -59,10 +60,16 @@ class PoetrySetup:
         return document
 
     def sync(self):
-        document = self.get_requirements()
+        required = self.get_requirements(optional=False)
         path = self.path / self.requirements_name
         with path.open('w', encoding='utf-8') as f:
-            f.write(document)
+            f.write(required)
+
+        optional = self.get_requirements(optional=True)
+        if optional != required:
+            path = self.path / self.constraints_name
+            with path.open('w', encoding='utf-8') as f:
+                f.write(optional)
 
         document = self.get_setup()
         path = self.path / self.setup_name

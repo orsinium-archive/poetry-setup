@@ -1,7 +1,19 @@
 {% for req in package.all_requires %}
-    {% if req.is_vcs() %}
-        -e {{ req.vcs }}+{{ req.source }}@{{ req.reference }}#egg={{ req.name }}
-    {% else %}
-        {{ req.name }}{% if not req.constraint.is_any() %}{{ req.constraint }}{% endif %}
+    {% if req.is_optional() == optional %}
+        {% if req.extras %}
+            {% for extra in req.extras %}
+                {% if req.is_vcs() %}
+                    -e {{ req.vcs }}+{{ req.source }}@{{ req.reference }}#egg={{ req.name }}[{{ extra }}]
+                {% else %}
+                    {{ req.name }}[{{ extra }}]{% if not req.constraint.is_any() %}{{ req.constraint }}{% endif %}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {% if req.is_vcs() %}
+                -e {{ req.vcs }}+{{ req.source }}@{{ req.reference }}#egg={{ req.name }}
+            {% else %}
+                {{ req.name }}{% if not req.constraint.is_any() %}{{ req.constraint }}{% endif %}
+            {% endif %}
+        {% endif %}
     {% endif %}
 {% endfor %}
