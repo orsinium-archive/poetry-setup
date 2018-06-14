@@ -29,10 +29,10 @@ setup(
     long_description=long_description,  # Optional
     # https://packaging.python.org/specifications/core-metadata/#description-content-type-optional
     long_description_content_type='text/markdown',  # Optional (see note above)
-        url="https://github.com/sdispater/poetry",  # Optional
-        author="Sébastien Eustace",  # Optional
-        author_email="sebastien@eustace.io",  # Optional
-        keywords=' '.join(['packaging', 'poetry']),  # Optional
+    url="https://github.com/sdispater/poetry",  # Optional
+    author="Sébastien Eustace",  # Optional
+    author_email="sebastien@eustace.io",  # Optional
+    keywords=' '.join(['packaging', 'poetry']),  # Optional
     packages=find_packages(
     ),  # Required
     # https://packaging.python.org/en/latest/requirements.html

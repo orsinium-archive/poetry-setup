@@ -4,6 +4,7 @@ from jinja2 import Environment
 from poetry.poetry import Poetry
 from yapf.yapflib.yapf_api import FormatCode
 from yapf.yapflib.style import CreateGoogleStyle
+from autopep8 import fix_code
 
 
 TEMPLATES_PATH = Path('templates')
@@ -52,6 +53,7 @@ class PoetrySetup:
         # remove empty strings
         while '\n\n' in document:
             document = document.replace('\n\n', '\n')
+        document = fix_code(document)
         return document
 
     def sync(self):
