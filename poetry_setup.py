@@ -28,7 +28,9 @@ class PoetrySetup:
     @staticmethod
     def _get_package(path):
         poetry = Poetry.create(path)
-        return poetry._package
+        package = poetry._package
+        package.scripts = poetry._local_config.get('scripts')
+        return package
 
     def get_requirements(self):
         with self.requirements_path.open(encoding='utf-8') as f:

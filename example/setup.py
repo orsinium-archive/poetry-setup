@@ -33,8 +33,7 @@ setup(
     author="Sébastien Eustace",  # Optional
     author_email="sebastien@eustace.io",  # Optional
     keywords=' '.join(['packaging', 'poetry']),  # Optional
-    packages=find_packages(
-    ),  # Required
+    packages=find_packages(),  # Required
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=['peppercorn'],  # Optional
     package_data={  # Optional
@@ -44,14 +43,11 @@ setup(
     data_files=[('my_data', ['data/data_file'])],  # Optional
     entry_points={  # Optional
         'console_scripts': [
-            'sample=sample:main',
+            'my-script=my_package:main',
         ],
     },
     # https://packaging.python.org/specifications/core-metadata/#project-url-multiple-use
     project_urls={  # Optional
-        'Bug Reports': 'https://github.com/pypa/sampleproject/issues',
-        'Funding': 'https://donate.pypi.org',
-        'Say Thanks!': 'http://saythanks.io/to/example',
-        'Source': 'https://github.com/pypa/sampleproject/',
+        'homepage': 'https://github.com/sdispater/poetry',
     },
 )

@@ -17,7 +17,7 @@ from io import open
 here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+with open(path.join(here, '{{ package.readme.name }}'), encoding='utf-8') as f:
     long_description = f.read()
 
 # Arguments marked as "Required" below must be included for upload to PyPI.
@@ -83,17 +83,26 @@ setup(
     # http://docs.python.org/3.4/distutils/setupscript.html#installing-additional-files
     data_files=[('my_data', ['data/data_file'])],  # Optional
 
-    entry_points={  # Optional
-        'console_scripts': [
-            'sample=sample:main',
-        ],
-    },
+    {% if package.scripts %}
+        entry_points={  # Optional
+            'console_scripts': [
+                {% for name, point in package.scripts.items() %}
+                    '{{ name }}={{ point }}',
+                {% endfor %}
+            ],
+        },
+    {% endif %}
 
     # https://packaging.python.org/specifications/core-metadata/#project-url-multiple-use
     project_urls={  # Optional
-        'Bug Reports': 'https://github.com/pypa/sampleproject/issues',
-        'Funding': 'https://donate.pypi.org',
-        'Say Thanks!': 'http://saythanks.io/to/example',
-        'Source': 'https://github.com/pypa/sampleproject/',
+        {% if package.homepage %}
+            'homepage': '{{ package.homepage }}',
+        {% endif %}
+        {% if package.repository %}
+            'repository': '{{ package.repository }}',
+        {% endif %}
+        {% if package.documentation %}
+            'documentation': '{{ package.documentation }}',
+        {% endif %}
     },
 )
