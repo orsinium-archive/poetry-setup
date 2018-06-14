@@ -1,4 +1,4 @@
-import os
+import sys
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 
@@ -44,6 +44,8 @@ class PoetrySetup:
         return package
 
     def get_requirements(self, optional=False):
+        if not any(r.is_optional() == optional for r in self.package.all_requires):
+            return
         with self.requirements_path.open(encoding='utf-8') as f:
             document = f.read()
         template = Environment().from_string(document)
@@ -82,18 +84,27 @@ class PoetrySetup:
         return document
 
     def sync(self):
-        required = self.get_requirements(optional=False)
-        path = self.path / self.requirements_name
-        with path.open('w', encoding='utf-8') as f:
-            f.write(required)
+        document = self.get_requirements(optional=False)
+        if document:
+            path = self.path / self.requirements_name
+            with path.open('w', encoding='utf-8') as f:
+                f.write(document)
 
-        optional = self.get_requirements(optional=True)
-        if optional != required:
+        document = self.get_requirements(optional=True)
+        if document:
             path = self.path / self.constraints_name
             with path.open('w', encoding='utf-8') as f:
-                f.write(optional)
+                f.write(document)
 
         document = self.get_setup()
         path = self.path / self.setup_name
         with path.open('w', encoding='utf-8') as f:
             f.write(document)
+
+
+def main(argv=sys.argv[1:]):
+    PoetrySetup(*argv).sync()
+
+
+if __name__ == '__main__':
+    main()
