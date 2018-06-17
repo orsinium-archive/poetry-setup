@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "poetry-setup"
-version = "0.1.0"
+version = "0.2.0"
 description = "make setup.py (setutools) from pyproject.toml (poetry)"
 authors = [
     "Gram Orsinium <master_fess@mail.ru>"

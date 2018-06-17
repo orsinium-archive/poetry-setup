@@ -39,9 +39,8 @@ setup(
     author="Gram Orsinium",  # Optional
     author_email="master_fess@mail.ru",  # Optional
     # For a list of valid classifiers, see https://pypi.org/classifiers/
-    classifiers=[  # Optional
-        'Development Status :: 4 - Beta',
-        'Environment :: Console',
+    classifiers=[
+        'Development Status :: 4 - Beta', 'Environment :: Console',
         'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
@@ -49,14 +48,22 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Topic :: Software Development :: Build Tools',
-        'Topic :: Software Development :: Libraries :: Python Modules',
-    ],
+        'Topic :: Software Development :: Libraries :: Python Modules'
+    ],  # Optional
     keywords=' '.join(
         ['packaging', 'dependency', 'poetry', 'setuptools', 'pip']),  # Optional
     packages=find_packages(),  # Required
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=['autopep8', 'jinja2', 'pip', 'poetry', 'pytest',
-                      'yapf'],  # Optional
+    install_requires=[
+        'yapf',
+        'poetry',
+        'pip',
+        'jinja2',
+        'autopep8',
+        'pytest',
+    ],  # Optional
+    # https://setuptools.readthedocs.io/en/latest/setuptools.html#dependencies-that-aren-t-in-pypi
+    dependency_links=[],  # Optional
     # NOT SUPPORTED YET
     # http://docs.python.org/3.4/distutils/setupscript.html#installing-additional-files
     data_files=[],  # Optional
