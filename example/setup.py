@@ -37,12 +37,34 @@ setup(
     url="https://github.com/sdispater/poetry",  # Optional
     author="Sébastien Eustace",  # Optional
     author_email="sebastien@eustace.io",  # Optional
+    # For a list of valid classifiers, see https://pypi.org/classifiers/
+    classifiers=[
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Topic :: Software Development :: Build Tools',
+        'Topic :: Software Development :: Libraries :: Python Modules'
+    ],  # Optional
     keywords=' '.join(['packaging', 'poetry']),  # Optional
     packages=find_packages(),  # Required
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=[
-        'cleo', 'pathlib2<3.0,>=2.2', 'pytest-cov<3.0,>=2.4',
-        'pytest<4.0,>=3.0', 'requests[security]<3.0,>=2.13', 'toml<0.10,>=0.9'
+        'django (==1.11)',
+        'toml (>=0.9,<0.10)',
+        'pathlib2 (>=2.2,<3.0); python_version >= "2.7" and python_version < "2.8"',
+        'deal (>=0.5)',
+        'requests[security] (>=2.13,<3.0)',
+        'pytest-cov (>=2.4,<3.0)',
+        'pytest (>=3.0,<4.0)',
+    ],  # Optional
+    # https://setuptools.readthedocs.io/en/latest/setuptools.html#dependencies-that-aren-t-in-pypi
+    dependency_links=[
+        'git+https://github.com/sdispater/cleo.git@master#egg=cleo',
     ],  # Optional
     # NOT SUPPORTED YET
     # http://docs.python.org/3.4/distutils/setupscript.html#installing-additional-files

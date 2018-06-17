@@ -53,13 +53,9 @@ setup(
     {% if package.author_email %}
         author_email="{{ package.author_email }}",  # Optional
     {% endif %}
-    {% if package.classifiers %}
+    {% if package.all_classifiers %}
         # For a list of valid classifiers, see https://pypi.org/classifiers/
-        classifiers=[  # Optional
-            {% for cl in package.all_classifiers %}
-                '{{ cl }}',
-            {% endfor %}
-        ],
+        classifiers={{ package.all_classifiers|pprint }},  # Optional
     {% endif %}
 
     {% if package.keywords %}
@@ -77,7 +73,22 @@ setup(
     ),  # Required
 
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires={{ requirements|pprint }},  # Optional
+    install_requires=[
+        {% for req in package.all_requires %}
+            {% if not req.is_optional() and not req.is_vcs() %}
+                '{{ req.to_pep_508() }}',
+            {% endif %}
+        {% endfor %}
+    ],  # Optional
+
+    # https://setuptools.readthedocs.io/en/latest/setuptools.html#dependencies-that-aren-t-in-pypi
+    dependency_links=[
+        {% for req in package.all_requires %}
+            {% if not req.is_optional() and req.is_vcs() %}
+                '{{ format_vcs(req) }}',
+            {% endif %}
+        {% endfor %}
+    ],  # Optional
 
     {% if package.extras %}
         extras_require={{ package.extras|pprint }},

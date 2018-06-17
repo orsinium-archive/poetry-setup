@@ -49,13 +49,24 @@ class PoetrySetup:
         package.entrypoints = builder.convert_entry_points()
         return package
 
+    @staticmethod
+    def _format_vcs(req):
+        result = '{r.vcs}+{r.source}@{r.reference}#egg={r.name}'.format(r=req)
+        if req.extras:
+            result += '[{}]'.format(','.join(req.extras))
+        return result
+
     def get_requirements(self, optional=False):
         if not any(r.is_optional() == optional for r in self.package.all_requires):
             return
         with self.requirements_path.open(encoding='utf-8') as f:
             document = f.read()
         template = Environment().from_string(document)
-        document = template.render(package=self.package, optional=optional)
+        document = template.render(
+            package=self.package,
+            optional=optional,
+            format_vcs=self._format_vcs,
+        )
         # rm junk
         document = document.replace('    ', '')
         # sort lines
@@ -77,7 +88,7 @@ class PoetrySetup:
         with self.setup_path.open(encoding='utf-8') as f:
             document = f.read()
         template = Environment().from_string(document)
-        document = template.render(package=self.package, requirements=requirements)
+        document = template.render(package=self.package, format_vcs=self._format_vcs)
 
         # format by yapf
         style = CreateGoogleStyle()
