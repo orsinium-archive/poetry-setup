@@ -57,7 +57,6 @@ setup(
     install_requires=[
         'yapf',
         'poetry',
-        'pip',
         'jinja2',
         'autopep8',
         'pytest',

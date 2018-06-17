@@ -1,7 +1,6 @@
 import sys
 from os import path
 from pathlib import Path
-from tempfile import NamedTemporaryFile
 
 from autopep8 import fix_code
 from jinja2 import Environment
@@ -10,14 +9,6 @@ from poetry.masonry.builders.builder import Builder
 from poetry.poetry import Poetry
 from yapf.yapflib.style import CreateGoogleStyle
 from yapf.yapflib.yapf_api import FormatCode
-
-try:
-    # pip>=10
-    from pip._internal.download import PipSession
-    from pip._internal.req import parse_requirements
-except ImportError:
-    from pip.download import PipSession
-    from pip.req import parse_requirements
 
 
 TEMPLATES_PATH = Path(path.abspath(path.dirname(__file__))) / 'templates'
@@ -75,20 +66,14 @@ class PoetrySetup:
         return document
 
     def get_setup(self):
-        # get requirements
-        # https://stackoverflow.com/a/16624700
-        with NamedTemporaryFile('w', delete=False) as f:
-            requirements = self.get_requirements()
-            f.write(requirements)
-            f.flush()
-            requirements = parse_requirements(f.name, session=PipSession())
-            requirements = [str(r.req) for r in requirements]
-
         # render template
         with self.setup_path.open(encoding='utf-8') as f:
             document = f.read()
         template = Environment().from_string(document)
-        document = template.render(package=self.package, format_vcs=self._format_vcs)
+        document = template.render(
+            package=self.package,
+            format_vcs=self._format_vcs,
+        )
 
         # format by yapf
         style = CreateGoogleStyle()

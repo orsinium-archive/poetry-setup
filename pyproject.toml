@@ -21,7 +21,6 @@ classifiers = [
 python = "^3.4"
 autopep8 = "*"
 jinja2 = "*"
-pip = "*"
 poetry = "*"
 yapf = "*"
 
