@@ -1,8 +1,12 @@
 language: python
 python:
   - "3.5"
+env:
+  global:
+    - PIPENV_VENV_IN_PROJECT=1
+    - PIPENV_IGNORE_VIRTUALENVS=1
 install:
   - pip install pipenv
-  - pipenv install --skip-lock --dev --system
+  - pipenv install --skip-lock --dev
 script:
-  - pipenv run "python -m pytest tests.py"
+  - pipenv run python -m pytest tests.py
