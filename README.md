@@ -2,6 +2,8 @@
 
 ![poetry-setup logo](assets/logo.png)
 
+[![Build Status](https://travis-ci.org/orsinium/poetry-setup.svg?branch=master)](https://travis-ci.org/orsinium/poetry-setup)
+
 Make your [poetry](https://poetry.eustace.io/) project backward compatible.
 
 This tool generate some files from [pyproject.toml](https://poetry.eustace.io/docs/pyproject/):
