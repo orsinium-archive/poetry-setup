@@ -1,11 +1,15 @@
 # poetry-setup
 
+![poetry-setup logo](assets/logo.png)
+
 Make your [poetry](https://poetry.eustace.io/) project backward compatible.
 
 This tool generate some files from [pyproject.toml](https://poetry.eustace.io/docs/pyproject/):
 * [setup.py](https://packaging.python.org/tutorials/packaging-projects/#creating-setup-py)
 * [requirements.txt](https://pip.pypa.io/en/stable/user_guide/#requirements-files)
 * [constraints.txt](https://pip.pypa.io/en/stable/user_guide/#constraints-files) (from optional dependencies)
+
+![files scheme](assets/scheme.png)
 
 ## Installation
 
@@ -33,7 +37,7 @@ poetry install poetry-setup
 ## Usage
 
 ```bash
-poetry-setup [path/ti/project/]
+poetry-setup [path/to/project/]
 ```
 
 Generate for project in current dir:
