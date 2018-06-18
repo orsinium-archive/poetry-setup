@@ -1,0 +1,8 @@
+language: python
+python:
+  - "3.5"
+install:
+  - pip install pipenv
+  - pipenv install --dev
+script:
+  - pipenv run "python -m pytest tests.py"
