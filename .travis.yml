@@ -3,6 +3,6 @@ python:
   - "3.5"
 install:
   - pip install pipenv
-  - pipenv install --dev
+  - pipenv install --skip-lock --dev --system
 script:
   - pipenv run "python -m pytest tests.py"
