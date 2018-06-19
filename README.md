@@ -2,7 +2,8 @@
 
 ![poetry-setup logo](assets/logo.png)
 
-[![Build Status](https://travis-ci.org/orsinium/poetry-setup.svg?branch=master)](https://travis-ci.org/orsinium/poetry-setup)
+[![Build Status](https://travis-ci.org/orsinium/poetry-setup.svg?branch=master)](https://travis-ci.org/orsinium/poetry-setup) [![Beta](https://img.shields.io/pypi/status/poetry-setup.svg)](https://pypi.org/project/poetry-setup/) [![Apache-2.0](https://img.shields.io/github/license/orsinium/poetry-setup.svg)](https://github.com/orsinium/poetry-setup/blob/master/LICENSE)
+
 
 Make your [poetry](https://poetry.eustace.io/) project backward compatible.
 
