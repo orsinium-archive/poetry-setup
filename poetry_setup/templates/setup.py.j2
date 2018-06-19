@@ -94,9 +94,11 @@ setup(
         extras_require={{ package.extras|pprint }},
     {% endif %}
 
-    # NOT SUPPORTED YET
     # http://docs.python.org/3.4/distutils/setupscript.html#installing-additional-files
-    data_files=[],  # Optional
+
+    {% if data_files %}
+        data_files={{ data_files|pprint }},  # Optional
+    {% endif %}
 
     {% if package.scripts %}
         entry_points={  # Optional
