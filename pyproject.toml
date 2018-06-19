@@ -28,4 +28,4 @@ yapf = "*"
 pytest = "*"
 
 [tool.poetry.scripts]
-poetry-setup = "poetry_setup:main"
+poetry-setup = "poetry_setup.core:main"

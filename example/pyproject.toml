@@ -2,20 +2,15 @@
 name = "example"
 version = "0.1.0"
 description = "The description of the package"
-
-license = "MIT"
-
-authors = [
-    "Sébastien Eustace <sebastien@eustace.io>"
-]
-
 readme = 'README.md'  # Markdown files are supported
+license = "MIT"
+authors = ["Sébastien Eustace <sebastien@eustace.io>"]
 
 repository = "https://github.com/sdispater/poetry"
 homepage = "https://github.com/sdispater/poetry"
 
-keywords = ['packaging', 'poetry']
 
+keywords = ['packaging', 'poetry']
 classifiers = [
     "Topic :: Software Development :: Build Tools",
     "Topic :: Software Development :: Libraries :: Python Modules"
