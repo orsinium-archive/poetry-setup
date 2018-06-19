@@ -27,7 +27,7 @@ setup(
     name='poetry-setup',  # Required
     # https://www.python.org/dev/peps/pep-0440/
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='0.3.0',  # Required
+    version='0.3.1',  # Required
     # https://packaging.python.org/specifications/core-metadata/#summary
     # Required
     description="make setup.py (setutools) from pyproject.toml (poetry)",
@@ -55,9 +55,9 @@ setup(
     packages=find_packages(),  # Required
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=[
-        'autopep8',
-        'yapf',
         'jinja2',
+        'yapf',
+        'autopep8',
         'poetry',
         'pytest',
     ],  # Optional
@@ -65,13 +65,13 @@ setup(
     dependency_links=[],  # Optional
     # http://docs.python.org/3.4/distutils/setupscript.html#installing-additional-files
     data_files=[('poetry_setup/templates',
-                 'poetry_setup/templates/MANIFEST.in'),
+                 ['poetry_setup/templates/MANIFEST.in']),
+                ('poetry_setup/templates', [
+                    'poetry_setup/templates/setup.cfg.j2'
+                ]), ('poetry_setup/templates',
+                     ['poetry_setup/templates/requirements.txt.j2']),
                 ('poetry_setup/templates',
-                 'poetry_setup/templates/setup.cfg.j2'),
-                ('poetry_setup/templates',
-                 'poetry_setup/templates/requirements.txt.j2'),
-                ('poetry_setup/templates',
-                 'poetry_setup/templates/setup.py.j2')],  # Optional
+                 ['poetry_setup/templates/setup.py.j2'])],  # Optional
     entry_points={  # Optional
         'console_scripts': [
             'poetry-setup=poetry_setup.core:main',

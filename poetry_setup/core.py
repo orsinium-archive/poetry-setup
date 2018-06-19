@@ -79,7 +79,7 @@ class PoetrySetup:
                     continue
                 if child.match('*.pyc'):
                     continue
-                data_files.append((str(child.parent), str(child)))
+                data_files.append((str(child.parent), [str(child)]))
         return data_files
 
     def get_setup(self):
