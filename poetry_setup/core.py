@@ -16,8 +16,8 @@ TEMPLATES_PATH = Path(path.abspath(path.dirname(__file__))) / 'templates'
 
 class PoetrySetup:
     # templates
-    requirements_path = TEMPLATES_PATH / 'requirements.txt'
-    setup_path = TEMPLATES_PATH / 'setup.py'
+    requirements_path = TEMPLATES_PATH / 'requirements.txt.j2'
+    setup_path = TEMPLATES_PATH / 'setup.py.j2'
 
     # outputs
     requirements_name = 'requirements.txt'
