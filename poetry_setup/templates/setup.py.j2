@@ -94,10 +94,8 @@ setup(
         extras_require={{ package.extras|pprint }},
     {% endif %}
 
-    # http://docs.python.org/3.4/distutils/setupscript.html#installing-additional-files
-    {% if data_files %}
-        data_files={{ data_files|pprint }},  # Optional
-    {% endif %}
+    # https://stackoverflow.com/a/16576850
+    include_package_data=True,
 
     {% if package.scripts %}
         entry_points={  # Optional

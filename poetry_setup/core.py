@@ -7,7 +7,6 @@ from jinja2 import Environment
 from poetry.io import NullIO
 from poetry.masonry.builders.builder import Builder
 from poetry.poetry import Poetry
-from setuptools import find_packages
 from yapf.yapflib.style import CreateGoogleStyle
 from yapf.yapflib.yapf_api import FormatCode
 
@@ -66,22 +65,6 @@ class PoetrySetup:
         document = '\n'.join(lines) + '\n'
         return document
 
-    def get_data_files(self):
-        data_files = []
-        for package in find_packages():
-            path = Path(package)
-            if not path.is_dir():
-                continue
-            for child in path.glob('**/*'):
-                if not child.is_file():
-                    continue
-                if child.match('*.py'):
-                    continue
-                if child.match('*.pyc'):
-                    continue
-                data_files.append((str(child.parent), [str(child)]))
-        return data_files
-
     def get_setup(self):
         # render template
         with self.setup_path.open(encoding='utf-8') as f:
@@ -90,7 +73,6 @@ class PoetrySetup:
         document = template.render(
             package=self.package,
             format_vcs=self._format_vcs,
-            data_files=self.get_data_files(),
         )
 
         # format by yapf
