@@ -32,7 +32,7 @@ class PoetrySetup:
 
     @staticmethod
     def _get_package(path):
-        poetry = Poetry.create(path)
+        poetry = Poetry.create(str(path))
         package = poetry._package
         package.scripts = poetry._local_config.get('scripts')
         builder = Builder(poetry, venv=None, io=NullIO)
