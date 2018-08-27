@@ -74,7 +74,7 @@ setup(
 
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=[
-        {% for req in package.all_requires %}
+        {% for req in package.requires %}
             {% if not req.is_optional() and not req.is_vcs() %}
                 '{{ req.to_pep_508() }}',
             {% endif %}

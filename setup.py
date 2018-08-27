@@ -27,7 +27,7 @@ setup(
     name='poetry-setup',  # Required
     # https://www.python.org/dev/peps/pep-0440/
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='0.3.2',  # Required
+    version='0.3.3',  # Required
     # https://packaging.python.org/specifications/core-metadata/#summary
     # Required
     description="make setup.py (setutools) from pyproject.toml (poetry)",
@@ -55,11 +55,10 @@ setup(
     packages=find_packages(),  # Required
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=[
-        'poetry',
-        'yapf',
-        'autopep8',
         'jinja2',
-        'pytest',
+        'yapf',
+        'poetry',
+        'autopep8',
     ],  # Optional
     # https://setuptools.readthedocs.io/en/latest/setuptools.html#dependencies-that-aren-t-in-pypi
     dependency_links=[],  # Optional
