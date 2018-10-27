@@ -35,7 +35,10 @@ class PoetrySetup:
         poetry = Poetry.create(str(path))
         package = poetry._package
         package.scripts = poetry._local_config.get('scripts')
-        builder = Builder(poetry, venv=None, io=NullIO)
+        try:
+            builder = Builder(poetry, venv=None, io=NullIO)
+        except TypeError:
+            builder = Builder(poetry, env=None, io=NullIO)
         # builder.find_files_to_add()
         package.entrypoints = builder.convert_entry_points()
         return package
